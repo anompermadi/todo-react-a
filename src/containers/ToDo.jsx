@@ -3,7 +3,7 @@
 //views
 //routes
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ToDoForm from "../components/ToDoForm";
 import ToDoTable from "../components/ToDoTable";
 import { Typography } from "@mui/material";
@@ -41,6 +41,19 @@ const ToDo = () => {
 
     setTodos(newTodo);
   };
+
+  //useEffect to manipulate DOM directly
+  useEffect(
+    () => {
+      // update DOM
+      let titleTulisan = `Todos ${todos.length}`;
+      console.log(titleTulisan);
+      // manual update
+      document.title = titleTulisan;
+    },
+    // add dependency from list
+    [todos]
+  );
 
   return (
     <>
