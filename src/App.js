@@ -1,5 +1,6 @@
 // import logo from "./logo.svg";
 // import './App.css';
+import NestedComponent from "./containers/NestedComponent";
 import ToDo from "./containers/ToDo";
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
           Learn React
         </a> */}
 
-        <ToDo />
+        {/* <ToDo /> */}
+        <NestedComponent />
       </header>
     </div>
   );
