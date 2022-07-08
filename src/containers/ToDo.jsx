@@ -3,43 +3,61 @@
 //views
 //routes
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import ToDoForm from "../components/ToDoForm";
 import ToDoTable from "../components/ToDoTable";
 import { Typography } from "@mui/material";
 
+import ToDoReducer from "../reducers/ToDoReducer";
+
+const initialTodos = [
+  { id: 1, name: "Review DOM", isCompleted: true },
+  { id: 2, name: "Belajar nge-React", isCompleted: false },
+  { id: 3, name: "Belajar Component React", isCompleted: false },
+];
+
 const ToDo = () => {
-  const [todos, setTodos] = useState([
-    { id: 1, name: "Review DOM", isCompleted: true },
-    { id: 2, name: "Belajar nge-React", isCompleted: false },
-    { id: 3, name: "Belajar Component React", isCompleted: false },
-  ]);
+  const [todos, dispatch] = useReducer(ToDoReducer, initialTodos);
+
+  // const [todos, setTodos] = useState([
+  //   { id: 1, name: "Review DOM", isCompleted: true },
+  //   { id: 2, name: "Belajar nge-React", isCompleted: false },
+  //   { id: 3, name: "Belajar Component React", isCompleted: false },
+  // ]);
 
   // function to add todos
   const addTodos = (newTodoName) => {
-    const newId = todos[todos.length - 1].id + 1;
+    //   const newId = todos[todos.length - 1].id + 1;
 
-    const objNewTodo = {
-      id: newId,
+    //   const objNewTodo = {
+    //     id: newId,
+    //     name: newTodoName,
+    //     isCompleted: false,
+    //   };
+
+    //   const newTodos = [...todos, objNewTodo];
+
+    //   setTodos(newTodos);
+    dispatch({
+      type: "add",
       name: newTodoName,
-      isCompleted: false,
-    };
-
-    const newTodos = [...todos, objNewTodo];
-
-    setTodos(newTodos);
+    });
   };
 
   const completedTodos = (idTodo) => {
-    const newTodo = todos.map((todo) => {
-      if (todo.id === idTodo) {
-        todo.isCompleted = true;
-      }
+    //   const newTodo = todos.map((todo) => {
+    //     if (todo.id === idTodo) {
+    //       todo.isCompleted = true;
+    //     }
 
-      return todo;
+    //     return todo;
+    //   });
+
+    //   setTodos(newTodo);
+    dispatch({
+      type: "completed",
+      id: idTodo,
     });
-
-    setTodos(newTodo);
   };
 
   //useEffect to manipulate DOM directly
