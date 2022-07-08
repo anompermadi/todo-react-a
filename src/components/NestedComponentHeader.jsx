@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Typography } from "@mui/material";
 
-const NestedComponentHeader = ({ level, children }) => {
+import { LevelContext } from "../contexts/LevelContext";
+
+const NestedComponentHeader = ({ children }) => {
+  const level = useContext(LevelContext);
+
   switch (level) {
     case 1:
       return <Typography variant="h1">{children}</Typography>;

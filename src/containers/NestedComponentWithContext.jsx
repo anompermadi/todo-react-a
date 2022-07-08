@@ -8,16 +8,22 @@ const NestedComponentWithContext = () => {
     <Box>
       <Typography variant="h5">NestedComponent (Non-Context)</Typography>
 
-      <Section level={1}>
+      {/* useContext => level 1 */}
+      <Section>
         <Heading>Title</Heading>
-        <Section level={2}>
+        {/* useContext => level 1 + 1 */}
+        <Section>
           <Heading>Header 2</Heading>
           <Heading>Header 2</Heading>
           <Heading>Header 2</Heading>
-          <Section level={3}>
+          {/* useContext => level 2 + 1 */}
+          <Section>
             <Heading>Header 3</Heading>
             <Heading>Header 3</Heading>
             <Heading>Header 3</Heading>
+            <Section>
+              <Heading>Header 4</Heading>
+            </Section>
           </Section>
         </Section>
       </Section>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@mui/material";
 
+import { LevelContext } from "../contexts/LevelContext";
+
 const NestedComponentSection = (props) => {
+  const level = useContext(LevelContext);
   return (
     <Box
       sx={{
@@ -9,7 +12,9 @@ const NestedComponentSection = (props) => {
         borderRadius: "10px",
       }}
     >
-      {props.children}
+      <LevelContext.Provider value={level + 1}>
+        {props.children}
+      </LevelContext.Provider>
     </Box>
   );
 };
